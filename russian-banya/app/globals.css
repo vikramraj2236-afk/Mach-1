@@ -1,0 +1,27 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root { color-scheme: dark; scroll-behavior: smooth; }
+* { box-sizing: border-box; }
+body { margin: 0; background: #171714; color: #eee9df; font-family: var(--font-manrope), sans-serif; }
+::selection { background: #b89a65; color: #171714; }
+a { color: inherit; text-decoration: none; }
+button, input, textarea, select { font: inherit; }
+.container-shell { width: min(1180px, calc(100% - 48px)); margin-inline: auto; }
+.eyebrow { color: #b89a65; letter-spacing: .22em; text-transform: uppercase; font-size: 10px; font-weight: 700; }
+.section-pad { padding-block: 112px; }
+.display-title { font-family: var(--font-cormorant), Georgia, serif; font-weight: 400; letter-spacing: -.035em; line-height: .98; }
+.gold-line { width: 46px; height: 1px; background: #b89a65; }
+.btn-gold { display: inline-flex; align-items: center; justify-content: center; gap: 12px; background: #b89a65; color: #171714; padding: 16px 22px; font-size: 10px; letter-spacing: .15em; text-transform: uppercase; font-weight: 800; transition: background .25s, transform .25s; }
+.btn-gold:hover { background: #d0b783; transform: translateY(-2px); }
+.btn-outline { display: inline-flex; align-items: center; justify-content: center; gap: 12px; border: 1px solid rgba(238,233,223,.45); color: #eee9df; padding: 15px 21px; font-size: 10px; letter-spacing: .15em; text-transform: uppercase; font-weight: 700; transition: border .25s, background .25s; }
+.btn-outline:hover { border-color: #b89a65; background: rgba(184,154,101,.1); }
+.image-hover { overflow: hidden; }
+.image-hover img { transition: transform .8s cubic-bezier(.2,.7,.2,1); }
+.image-hover:hover img { transform: scale(1.055); }
+input, textarea, select { background: #24241f; border: 1px solid rgba(238,233,223,.17); color: #eee9df; border-radius: 0; outline: none; width: 100%; padding: 14px 15px; font-size: 13px; }
+input:focus, textarea:focus, select:focus { border-color: #b89a65; }
+input::placeholder, textarea::placeholder { color: #89877f; }
+select option { background: #24241f; }
+@media (max-width: 768px) { .section-pad { padding-block: 76px; } .container-shell { width: min(100% - 36px, 1180px); } }
