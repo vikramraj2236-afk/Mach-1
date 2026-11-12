@@ -1,0 +1,1108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./src/output.css">
+    <!-- Google Fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+<!-- Alpine.js -->
+<script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+</head>
+<body>
+    <!-- RUSSIAN THAI SPA - FLOATING NAVBAR -->
+    <header
+      x-data="{
+        mobileOpen: false,
+        locationOpen: false,
+        scrolled: false
+    }"
+      @scroll.window="scrolled = window.scrollY > 20"
+      @keydown.escape.window="mobileOpen = false; locationOpen = false"
+      class="floating-header"
+    >
+      <nav class="floating-nav" :class="scrolled ? 'nav-scrolled' : ''">
+        <!-- NAVBAR INNER -->
+        <div class="nav-inner">
+          <!-- BRAND -->
+          <a href="#home" class="brand">
+            <div class="brand-icon">
+              <svg viewBox="0 0 40 40" fill="none">
+                <path
+                  d="M20 4C20 4 9 16 9 23C9 29.1 13.9 34 20 34C26.1 34 31 29.1 31 23C31 16 20 4 20 4Z"
+                  stroke="currentColor"
+                  stroke-width="1.3"
+                />
+                <path
+                  d="M20 14C17 19 16 23 20 29C24 23 23 19 20 14Z"
+                  fill="currentColor"
+                />
+              </svg>
+            </div>
+
+            <div class="brand-copy">
+              <span class="brand-name">Russian Thai</span>
+              <span class="brand-tagline">LUXURY WELLNESS</span>
+            </div>
+          </a>
+
+          <!-- DESKTOP NAVIGATION -->
+          <div class="desktop-nav">
+            <a href="#home" class="nav-item active"> Home </a>
+
+            <a href="#about" class="nav-item"> About </a>
+
+            <a href="#services" class="nav-item"> Treatments </a>
+
+            <a href="#faq" class="nav-item">FAQ</a>
+            <!-- LOCATION DROPDOWN -->
+            <div class="location-wrapper" @click.outside="locationOpen = false">
+              <button
+                @click="locationOpen = !locationOpen"
+                class="nav-item location-trigger"
+                :aria-expanded="locationOpen.toString()"
+              >
+                Locations
+
+                <svg
+                  class="location-arrow"
+                  :class="locationOpen ? 'arrow-open' : ''"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="1.8"
+                >
+                  <path d="m6 9 6 6 6-6" />
+                </svg>
+              </button>
+
+              <!-- GLASS LOCATION MENU -->
+              <div
+                x-cloak
+                x-show="locationOpen"
+                x-transition:enter="transition ease-out duration-300"
+                x-transition:enter-start="opacity-0 translate-y-3 scale-95"
+                x-transition:enter-end="opacity-100 translate-y-0 scale-100"
+                x-transition:leave="transition ease-in duration-200"
+                x-transition:leave-start="opacity-100"
+                x-transition:leave-end="opacity-0 translate-y-2"
+                class="location-dropdown"
+              >
+                <div class="dropdown-heading">EXPLORE OUR LOCATION</div>
+
+                <a
+                  href="#contact"
+                  @click="locationOpen = false"
+                  class="location-option"
+                >
+                  <div class="location-icon">
+                    <svg
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="1.6"
+                    >
+                      <path
+                        d="M20 10c0 5-8 12-8 12S4 15 4 10a8 8 0 1 1 16 0Z"
+                      />
+                      <circle cx="12" cy="10" r="2.5" />
+                    </svg>
+                  </div>
+
+                  <div class="location-info">
+                    <span>Mumbai</span>
+                    <small>India · View location</small>
+                  </div>
+
+                  <span class="location-external">↗</span>
+                </a>
+
+                <div class="dropdown-divider"></div>
+
+                <a
+                  href="#contact"
+                  @click="locationOpen = false"
+                  class="dropdown-contact"
+                >
+                  Get in touch <span>→</span>
+                </a>
+              </div>
+            </div>
+
+            <a href="#gallery" class="nav-item"> Gallery </a>
+          </div>
+
+          <!-- DESKTOP BOOKING -->
+          <a href="#booking" class="nav-booking">
+            <span>Book Appointment</span>
+
+            <svg
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.8"
+            >
+              <path d="M5 12h14M13 6l6 6-6 6" />
+            </svg>
+          </a>
+
+          <!-- MOBILE MENU BUTTON -->
+          <button
+            @click="mobileOpen = !mobileOpen; locationOpen = false"
+            class="mobile-toggle"
+            :aria-expanded="mobileOpen.toString()"
+            aria-label="Toggle navigation"
+          >
+            <span :class="mobileOpen ? 'line-one-open' : ''"></span>
+            <span :class="mobileOpen ? 'line-two-open' : ''"></span>
+            <span :class="mobileOpen ? 'line-three-open' : ''"></span>
+          </button>
+        </div>
+
+        <!-- MOBILE MENU -->
+        <div
+          x-cloak
+          x-show="mobileOpen"
+          x-transition:enter="transition ease-out duration-300"
+          x-transition:enter-start="opacity-0 -translate-y-3"
+          x-transition:enter-end="opacity-100 translate-y-0"
+          x-transition:leave="transition ease-in duration-200"
+          x-transition:leave-start="opacity-100"
+          x-transition:leave-end="opacity-0 -translate-y-3"
+          class="mobile-nav"
+        >
+          <a href="#home" @click="mobileOpen = false" class="mobile-nav-item">
+            Home
+          </a>
+
+          <a href="#about" @click="mobileOpen = false" class="mobile-nav-item">
+            About
+          </a>
+
+          <a
+            href="#services"
+            @click="mobileOpen = false"
+            class="mobile-nav-item"
+          >
+            Treatments
+          </a>
+          <a href="#faq" @click="mobileOpen = false" class="mobile-nav-item">
+            FAQ
+          </a>
+          <!-- MOBILE LOCATION -->
+          <div class="mobile-location">
+            <button
+              @click="locationOpen = !locationOpen"
+              class="mobile-nav-item mobile-location-trigger"
+            >
+              Locations
+
+              <svg
+                viewBox="0 0 24 24"
+                :class="locationOpen ? 'arrow-open' : ''"
+                class="location-arrow"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.8"
+              >
+                <path d="m6 9 6 6 6-6" />
+              </svg>
+            </button>
+
+            <div
+              x-cloak
+              x-show="locationOpen"
+              x-transition
+              class="mobile-location-content"
+            >
+              <a
+                href="#contact"
+                @click="mobileOpen = false; locationOpen = false"
+              >
+                <span>📍</span>
+                Mumbai, India
+              </a>
+            </div>
+          </div>
+
+          <a
+            href="#gallery"
+            @click="mobileOpen = false"
+            class="mobile-nav-item"
+          >
+            Gallery
+          </a>
+
+          <a
+            href="#contact"
+            @click="mobileOpen = false"
+            class="mobile-nav-item"
+          >
+            Contact
+          </a>
+
+          <a href="#booking" @click="mobileOpen = false" class="mobile-booking">
+            Book Your Experience <span>↗</span>
+          </a>
+        </div>
+      </nav>
+    </header>
+    <!-- HERO SECTION -->
+    <main>
+      <section id="home" class="hero-section">
+        <div class="hero-glow hero-glow-one"></div>
+        <div class="hero-glow hero-glow-two"></div>
+
+        <div class="hero-container">
+          <div class="hero-content">
+            <span class="hero-eyebrow">
+              <span class="hero-dot"></span>
+              LUXURY WELLNESS EXPERIENCE
+            </span>
+
+            <h1 class="hero-title">
+              Russian & Thai Spa <br />
+              <span>At Home & Hotels</span>
+            </h1>
+
+            <p class="hero-description">
+              Escape the everyday and experience a world of calm. Discover the
+              harmony of Russian and Thai-inspired wellness.
+            </p>
+
+            <div class="hero-actions">
+              <a href="#booking" class="hero-button-primary">
+                Call Now <span>↗</span>
+              </a>
+              <a href="#services" class="hero-button-secondary">
+                Whatsapp Now <span>↗</span>
+              </a>
+            </div>
+
+            <div class="hero-highlights">
+              <div>
+                <span class="highlight-icon">✧</span>
+                <span>Relaxation</span>
+              </div>
+              <div>
+                <span class="highlight-icon">✧</span>
+                <span>Rejuvenation</span>
+              </div>
+              <div>
+                <span class="highlight-icon">✧</span>
+                <span>Wellness</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="hero-visual">
+            <div class="hero-image-frame">
+              <img
+                src="/images/spa-therapist.jpg"
+                alt="Luxury spa relaxation room"
+                class="hero-image"
+              />
+              <div class="hero-image-overlay"></div>
+              <div class="hero-image-caption">
+                <span>THE ART OF WELLNESS</span>
+                <strong>Your moment of calm.</strong>
+              </div>
+            </div>
+
+            <div class="hero-float-card hero-card-top">
+              <span class="float-card-icon">✧</span>
+              <div>
+                <strong>Find Your Balance</strong>
+                <small>A moment just for you</small>
+              </div>
+            </div>
+
+            <div class="hero-float-card hero-card-bottom">
+              <span class="float-card-number">01</span>
+              <div>
+                <strong>Escape. Unwind.</strong>
+                <small>Rediscover your calm</small>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="hero-bottom-line">
+          <span>Mumbai, INDIA</span>
+          <span>AN EXPERIENCE BEYOND RELAXATION</span>
+          <span>SCROLL TO EXPLORE ↓</span>
+        </div>
+      </section>
+    </main>
+    <!-- ABOUT SECTION -->
+    <section id="about" class="about-section">
+      <div class="about-container">
+        <div class="about-visual">
+          <div class="about-image-frame">
+            <img
+              src="/images/spa.jpg.jpg"
+              alt="Elegant spa wellness interior"
+              class="about-image"
+            />
+          </div>
+
+          <div class="about-floating-card">
+            <span class="about-card-symbol">✧</span>
+            <div>
+              <strong>A Space to Reconnect</strong>
+              <small>Pause. Breathe. Restore.</small>
+            </div>
+          </div>
+
+          <div class="about-image-label">
+            <span>RUSSIAN THAI</span>
+            <strong>The Art of Unwinding</strong>
+          </div>
+        </div>
+
+        <div class="about-content">
+          <span class="about-eyebrow"> <span></span> OUR PHILOSOPHY </span>
+
+          <h2 class="about-title">
+            More Than a Spa.
+            <span>A Feeling of Tranquility.</span>
+          </h2>
+
+          <p class="about-description">
+            Welcome to Russian Thai, a space designed to help you step away from
+            the everyday and reconnect with yourself. Discover a calming
+            atmosphere inspired by the art of relaxation and wellness.
+          </p>
+
+          <p class="about-description">
+            Every detail is thoughtfully designed to create a peaceful
+            experience where you can slow down, unwind and enjoy a moment that
+            belongs entirely to you.
+          </p>
+
+          <a href="#services" class="about-link">
+            DISCOVER OUR EXPERIENCE <span>↗</span>
+          </a>
+
+          <div class="about-features">
+            <div class="about-feature">
+              <span>✧</span>
+              <strong>Relaxation</strong>
+              <small>Find your calm</small>
+            </div>
+
+            <div class="about-feature">
+              <span>◇</span>
+              <strong>Harmony</strong>
+              <small>Restore balance</small>
+            </div>
+
+            <div class="about-feature">
+              <span>❋</span>
+              <strong>Wellness</strong>
+              <small>Feel renewed</small>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section id="spa-services" class="spa-services-section">
+      <div class="spa-services-container">
+        <div class="spa-services-heading">
+          <span class="spa-services-eyebrow"
+            >✧ THE RUSSIAN THAI COLLECTION</span
+          >
+          <h2 class="spa-services-title">
+            Discover Your
+            <span>Signature Experience.</span>
+          </h2>
+          <p>
+            Take a moment for yourself. Explore our collection of relaxing spa
+            experiences.
+          </p>
+        </div>
+
+        <div class="spa-services-grid">
+          <!-- 01 Jacuzzi -->
+          <article class="spa-service-card">
+            <div class="spa-service-image-wrap">
+              <img
+                src="/images/service-jacuzzi.jpg"
+                alt="Jacuzzi spa experience"
+              />
+              <span class="spa-service-number">01</span>
+            </div>
+            <div class="spa-service-info">
+              <span class="spa-service-label">WATER EXPERIENCE</span>
+              <h3>Jacuzzi</h3>
+              <p>
+                Relax in warm swirling water that eases tension and soothes
+                tired muscles.
+              </p>
+              <div class="spa-service-actions">
+                <a href="tel:+91XXXXXXXXXX" class="spa-call-btn">☎ CALL NOW</a>
+                <a
+                  href="https://wa.me/91XXXXXXXXXX"
+                  target="_blank"
+                  rel="noopener"
+                  class="spa-whatsapp-btn"
+                  >◉ WHATSAPP</a
+                >
+              </div>
+            </div>
+          </article>
+
+          <!-- 02 Deep Tissue -->
+          <article class="spa-service-card">
+            <div class="spa-service-image-wrap">
+              <img src="/images/service-body.jpg" alt="Deep tissue massage" />
+              <span class="spa-service-number">02</span>
+            </div>
+            <div class="spa-service-info">
+              <span class="spa-service-label">TARGETED RELAXATION</span>
+              <h3>Deep Tissue Massage</h3>
+              <p>
+                Focused pressure designed to target deeper muscle tension and
+                knots.
+              </p>
+              <div class="spa-service-actions">
+                <a href="tel:+91XXXXXXXXXX" class="spa-call-btn">☎ CALL NOW</a>
+                <a
+                  href="https://wa.me/91XXXXXXXXXX"
+                  target="_blank"
+                  rel="noopener"
+                  class="spa-whatsapp-btn"
+                  >◉ WHATSAPP</a
+                >
+              </div>
+            </div>
+          </article>
+
+          <!-- 03 Thai Massage -->
+          <article class="spa-service-card">
+            <div class="spa-service-image-wrap">
+              <img
+                src="/images/service-thai.jpg"
+                alt="Thai massage experience"
+              />
+              <span class="spa-service-number">03</span>
+            </div>
+            <div class="spa-service-info">
+              <span class="spa-service-label">TRADITIONAL EXPERIENCE</span>
+              <h3>Thai Massage</h3>
+              <p>
+                Traditional stretching-inspired techniques for relaxation and
+                flexibility.
+              </p>
+              <div class="spa-service-actions">
+                <a href="tel:+91XXXXXXXXXX" class="spa-call-btn">☎ CALL NOW</a>
+                <a
+                  href="https://wa.me/91XXXXXXXXXX"
+                  target="_blank"
+                  rel="noopener"
+                  class="spa-whatsapp-btn"
+                  >◉ WHATSAPP</a
+                >
+              </div>
+            </div>
+          </article>
+
+          <!-- 04 Swedish Massage -->
+          <article class="spa-service-card">
+            <div class="spa-service-image-wrap">
+              <img
+                src="/images/service-swedish.jpg"
+                alt="Swedish massage experience"
+              />
+              <span class="spa-service-number">04</span>
+            </div>
+            <div class="spa-service-info">
+              <span class="spa-service-label">GENTLE WELLNESS</span>
+              <h3>Swedish Massage</h3>
+              <p>
+                Gentle, flowing strokes designed to relax the body and improve
+                circulation.
+              </p>
+              <div class="spa-service-actions">
+                <a href="tel:+91XXXXXXXXXX" class="spa-call-btn">☎ CALL NOW</a>
+                <a
+                  href="https://wa.me/91XXXXXXXXXX"
+                  target="_blank"
+                  rel="noopener"
+                  class="spa-whatsapp-btn"
+                  >◉ WHATSAPP</a
+                >
+              </div>
+            </div>
+          </article>
+
+          <!-- 05 Hot Oil -->
+          <article class="spa-service-card">
+            <div class="spa-service-image-wrap">
+              <img src="/images/service-hot-oil.jpg" alt="Hot oil massage" />
+              <span class="spa-service-number">05</span>
+            </div>
+            <div class="spa-service-info">
+              <span class="spa-service-label">AROMATIC RITUAL</span>
+              <h3>Hot Oil Massage</h3>
+              <p>
+                Warm aromatic oils combined with smooth strokes for a relaxing
+                experience.
+              </p>
+              <div class="spa-service-actions">
+                <a href="tel:+91XXXXXXXXXX" class="spa-call-btn">☎ CALL NOW</a>
+                <a
+                  href="https://wa.me/91XXXXXXXXXX"
+                  target="_blank"
+                  rel="noopener"
+                  class="spa-whatsapp-btn"
+                  >◉ WHATSAPP</a
+                >
+              </div>
+            </div>
+          </article>
+
+          <!-- 06 Body Massage -->
+          <article class="spa-service-card">
+            <div class="spa-service-image-wrap">
+              <img
+                src="/images/service-deep-tissue.jpg"
+                alt="Body massage experience"
+              />
+              <span class="spa-service-number">06</span>
+            </div>
+            <div class="spa-service-info">
+              <span class="spa-service-label">BODY WELLNESS</span>
+              <h3>Body Massage</h3>
+              <p>
+                A relaxing body treatment designed to help you unwind and feel
+                refreshed.
+              </p>
+              <div class="spa-service-actions">
+                <a href="tel:+91XXXXXXXXXX" class="spa-call-btn">☎ CALL NOW</a>
+                <a
+                  href="https://wa.me/91XXXXXXXXXX"
+                  target="_blank"
+                  rel="noopener"
+                  class="spa-whatsapp-btn"
+                  >◉ WHATSAPP</a
+                >
+              </div>
+            </div>
+          </article>
+        </div>
+
+        <div class="spa-services-bottom">
+          <span>YOUR TIME. YOUR SPACE. YOUR WELLNESS.</span>
+          <a href="#booking">RESERVE YOUR EXPERIENCE ↗</a>
+        </div>
+      </div>
+    </section>
+
+    <section id="experience" class="experience-section">
+      <div class="experience-container">
+        <div class="experience-left">
+          <span class="experience-eyebrow">✧ THE RUSSIAN THAI DIFFERENCE</span>
+
+          <h2 class="experience-title">
+            Your Escape.
+            <span>Your Sanctuary.</span>
+          </h2>
+
+          <p class="experience-description">
+            Step into a peaceful environment designed around comfort, relaxation
+            and your personal wellness experience. Take a break from the
+            everyday and make time for yourself.
+          </p>
+
+          <div class="experience-image-wrap">
+            <img
+              src="/images/spa-hero.jpg.png"
+              alt="Luxury spa wellness atmosphere"
+              class="experience-image"
+            />
+            <div class="experience-image-overlay">
+              <span>RUSSIAN THAI</span>
+              <strong>Make time for yourself.</strong>
+            </div>
+          </div>
+        </div>
+
+        <div class="experience-right">
+          <div class="experience-card">
+            <span class="experience-icon">✧</span>
+            <span class="experience-card-number">01 / COMFORT</span>
+            <h3>Peaceful Ambience</h3>
+            <p>A calm and welcoming atmosphere to help you unwind.</p>
+          </div>
+
+          <div class="experience-card">
+            <span class="experience-icon">◇</span>
+            <span class="experience-card-number">02 / CARE</span>
+            <h3>Personal Attention</h3>
+            <p>An experience thoughtfully focused on your comfort.</p>
+          </div>
+
+          <div class="experience-card">
+            <span class="experience-icon">❋</span>
+            <span class="experience-card-number">03 / WELLNESS</span>
+            <h3>Relaxing Experiences</h3>
+            <p>Explore wellness experiences made for moments of calm.</p>
+          </div>
+
+          <div class="experience-card">
+            <span class="experience-icon">✺</span>
+            <span class="experience-card-number">04 / YOU</span>
+            <h3>Your Time, Your Way</h3>
+            <p>Take a pause from your routine and enjoy your own time.</p>
+          </div>
+
+          <a href="#booking" class="experience-booking">
+            RESERVE YOUR MOMENT <span>↗</span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <section id="reviews" class="reviews-section">
+      <div class="reviews-container">
+        <div class="reviews-heading">
+          <span class="reviews-eyebrow">✧ WORDS FROM OUR GUESTS</span>
+          <h2 class="reviews-title">
+            Moments Worth
+            <span>Remembering.</span>
+          </h2>
+          <p>Every visit is a moment to pause, relax and reconnect.</p>
+        </div>
+
+        <div class="reviews-grid">
+          <!-- Review 1 -->
+          <article class="review-card">
+            <div class="review-top">
+              <span class="review-quote">“</span>
+              <span class="review-stars">★★★★★</span>
+            </div>
+
+            <p class="review-message">
+              Add your first genuine customer review here. Share what the guest
+              enjoyed about their spa experience.
+            </p>
+
+            <div class="review-divider"></div>
+
+            <div class="review-author">
+              <div class="review-avatar">G</div>
+              <div>
+                <strong>Raj Kumar</strong>
+                <small>Verified Guest</small>
+              </div>
+              <span class="review-mark">✧</span>
+            </div>
+          </article>
+
+          <!-- Review 2 -->
+          <article class="review-card review-card-featured">
+            <div class="review-top">
+              <span class="review-quote">“</span>
+              <span class="review-stars">★★★★★</span>
+            </div>
+
+            <p class="review-message">
+              Add another genuine customer testimonial here. A short personal
+              experience can help visitors understand your service.
+            </p>
+
+            <div class="review-divider"></div>
+
+            <div class="review-author">
+              <div class="review-avatar">G</div>
+              <div>
+                <strong>Vikram Singh</strong>
+                <small>Verified Guest</small>
+              </div>
+              <span class="review-mark">✧</span>
+            </div>
+          </article>
+
+          <!-- Review 3 -->
+          <article class="review-card">
+            <div class="review-top">
+              <span class="review-quote">“</span>
+              <span class="review-stars">★★★★★</span>
+            </div>
+
+            <p class="review-message">
+              Add a third genuine guest review here. Highlight a real detail
+              that made their visit memorable.
+            </p>
+
+            <div class="review-divider"></div>
+
+            <div class="review-author">
+              <div class="review-avatar">G</div>
+              <div>
+                <strong>Meera Patel</strong>
+                <small>Verified Guest</small>
+              </div>
+              <span class="review-mark">✧</span>
+            </div>
+          </article>
+        </div>
+
+        <div class="reviews-bottom">
+          <span>YOUR EXPERIENCE MATTERS TO US</span>
+          <a href="#booking">EXPERIENCE IT YOURSELF ↗</a>
+        </div>
+      </div>
+    </section>
+
+    <section id="faq" class="faq-section" x-data="{ activeFaq: 1 }">
+      <div class="faq-container">
+        <div class="faq-heading">
+          <span class="faq-eyebrow">✧ GOOD TO KNOW</span>
+          <h2 class="faq-title">
+            Frequently Asked
+            <span>Questions.</span>
+          </h2>
+          <p>
+            Everything you need to know before experiencing Russian Thai Spa.
+          </p>
+        </div>
+
+        <div class="faq-layout">
+          <div class="faq-intro-card">
+            <span class="faq-intro-icon">✧</span>
+            <span class="faq-intro-label">NEED A LITTLE CLARITY?</span>
+            <h3>We're Here to Help.</h3>
+            <p>
+              Have another question? Feel free to contact us and our team will
+              be happy to assist.
+            </p>
+            <a href="#contact" class="faq-contact-link">
+              CONTACT US <span>↗</span>
+            </a>
+            <div class="faq-decoration">R</div>
+          </div>
+
+          <div class="faq-list">
+            <!-- FAQ 1 -->
+            <div class="faq-item" :class="activeFaq === 1 ? 'faq-open' : ''">
+              <button
+                class="faq-question"
+                @click="activeFaq = activeFaq === 1 ? 0 : 1"
+                :aria-expanded="activeFaq === 1"
+              >
+                <span>What services do you offer?</span>
+                <span
+                  class="faq-toggle"
+                  x-text="activeFaq === 1 ? '−' : '+'"
+                ></span>
+              </button>
+              <div x-show="activeFaq === 1" x-collapse class="faq-answer">
+                We feature a selection of spa experiences, including Jacuzzi,
+                Thai Massage, Deep Tissue Massage, Swedish Massage, Hot Oil
+                Massage and Body Massage.
+              </div>
+            </div>
+
+            <!-- FAQ 2 -->
+            <div class="faq-item" :class="activeFaq === 2 ? 'faq-open' : ''">
+              <button
+                class="faq-question"
+                @click="activeFaq = activeFaq === 2 ? 0 : 2"
+                :aria-expanded="activeFaq === 2"
+              >
+                <span>Do I need to book an appointment?</span>
+                <span
+                  class="faq-toggle"
+                  x-text="activeFaq === 2 ? '−' : '+'"
+                ></span>
+              </button>
+              <div x-show="activeFaq === 2" x-collapse class="faq-answer">
+                Please contact us before visiting to check availability and make
+                arrangements for your preferred experience.
+              </div>
+            </div>
+
+            <!-- FAQ 3 -->
+            <div class="faq-item" :class="activeFaq === 3 ? 'faq-open' : ''">
+              <button
+                class="faq-question"
+                @click="activeFaq = activeFaq === 3 ? 0 : 3"
+                :aria-expanded="activeFaq === 3"
+              >
+                <span>How long does a spa session last?</span>
+                <span
+                  class="faq-toggle"
+                  x-text="activeFaq === 3 ? '−' : '+'"
+                ></span>
+              </button>
+              <div x-show="activeFaq === 3" x-collapse class="faq-answer">
+                Session durations depend on the selected service. Please contact
+                us for the available duration of each treatment.
+              </div>
+            </div>
+
+            <!-- FAQ 4 -->
+            <div class="faq-item" :class="activeFaq === 4 ? 'faq-open' : ''">
+              <button
+                class="faq-question"
+                @click="activeFaq = activeFaq === 4 ? 0 : 4"
+                :aria-expanded="activeFaq === 4"
+              >
+                <span>What should I bring for my visit?</span>
+                <span
+                  class="faq-toggle"
+                  x-text="activeFaq === 4 ? '−' : '+'"
+                ></span>
+              </button>
+              <div x-show="activeFaq === 4" x-collapse class="faq-answer">
+                Please contact our team before your visit for guidance about
+                anything you may need to bring.
+              </div>
+            </div>
+
+            <!-- FAQ 5 -->
+            <div class="faq-item" :class="activeFaq === 5 ? 'faq-open' : ''">
+              <button
+                class="faq-question"
+                @click="activeFaq = activeFaq === 5 ? 0 : 5"
+                :aria-expanded="activeFaq === 5"
+              >
+                <span>How can I know the treatment prices?</span>
+                <span
+                  class="faq-toggle"
+                  x-text="activeFaq === 5 ? '−' : '+'"
+                ></span>
+              </button>
+              <div x-show="activeFaq === 5" x-collapse class="faq-answer">
+                Please contact us directly for the latest treatment prices and
+                available service options.
+              </div>
+            </div>
+
+            <!-- FAQ 6 -->
+            <div class="faq-item" :class="activeFaq === 6 ? 'faq-open' : ''">
+              <button
+                class="faq-question"
+                @click="activeFaq = activeFaq === 6 ? 0 : 6"
+                :aria-expanded="activeFaq === 6"
+              >
+                <span>Where is Russian Thai Spa located?</span>
+                <span
+                  class="faq-toggle"
+                  x-text="activeFaq === 6 ? '−' : '+'"
+                ></span>
+              </button>
+              <div x-show="activeFaq === 6" x-collapse class="faq-answer">
+                Contact us directly for our exact location and directions.
+              </div>
+            </div>
+
+            <!-- FAQ 7: Home & Hotel Service -->
+            <div class="faq-item" :class="activeFaq === 7 ? 'faq-open' : ''">
+              <button
+                class="faq-question"
+                @click="activeFaq = activeFaq === 7 ? 0 : 7"
+                :aria-expanded="activeFaq === 7"
+              >
+                <span>Do you provide home and hotel spa services?</span>
+                <span
+                  class="faq-toggle"
+                  x-text="activeFaq === 7 ? '−' : '+'"
+                ></span>
+              </button>
+
+              <div x-show="activeFaq === 7" x-collapse class="faq-answer">
+                Yes! Russian Thai Spa provides home and hotel spa services.
+                Enjoy your selected spa experience at your preferred location.
+                Cash on Delivery (COD) is also available. Contact us to check
+                service availability and arrange your visit.
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <footer id="contact" class="luxury-footer">
+      <div class="footer-container">
+        <!-- Newsletter / Brand Banner -->
+        <div class="footer-banner">
+          <div>
+            <span class="footer-eyebrow">✧ YOUR MOMENT OF TRANQUILITY</span>
+            <h2>Make Time for <span>Yourself.</span></h2>
+          </div>
+          <a href="tel:+91XXXXXXXXXX" class="footer-banner-btn">
+            GET IN TOUCH <span>↗</span>
+          </a>
+        </div>
+
+        <!-- Footer Main -->
+        <div class="footer-main">
+          <!-- Brand -->
+          <div class="footer-brand">
+            <a href="#home" class="footer-logo">
+              <span class="footer-logo-icon">R</span>
+              <span>
+                <strong>Russian Thai</strong>
+                <small>LUXURY WELLNESS</small>
+              </span>
+            </a>
+
+            <p>
+              Discover a world of relaxation and wellness. Enjoy your preferred
+              spa experience at our location, or explore our home and hotel spa
+              services.
+            </p>
+
+            <div class="footer-socials">
+              <a href="#" aria-label="Instagram">IG</a>
+              <a href="#" aria-label="Facebook">FB</a>
+              <a href="#" aria-label="WhatsApp">WA</a>
+            </div>
+          </div>
+
+          <!-- Quick Links -->
+          <div class="footer-column">
+            <h3>QUICK LINKS</h3>
+            <a href="#home">Home</a>
+            <a href="#about">About Us</a>
+            <a href="#services">Treatments</a>
+            <a href="#experience">Our Experience</a>
+            <a href="#reviews">Guest Reviews</a>
+            <a href="#faq">FAQ</a>
+          </div>
+
+          <!-- Services -->
+          <div class="footer-column">
+            <h3>OUR SERVICES</h3>
+            <a href="#spa-services">Jacuzzi</a>
+            <a href="#spa-services">Thai Massage</a>
+            <a href="#spa-services">Deep Tissue Massage</a>
+            <a href="#spa-services">Swedish Massage</a>
+            <a href="#spa-services">Hot Oil Massage</a>
+            <a href="#spa-services">Body Massage</a>
+          </div>
+
+          <!-- Contact -->
+          <div class="footer-column footer-contact">
+            <h3>GET IN TOUCH</h3>
+
+            <div class="footer-contact-item">
+              <span>✆</span>
+              <div>
+                <small>CALL US</small>
+                <a href="tel:+91XXXXXXXXXX">+91 XXXXXXXXXX</a>
+              </div>
+            </div>
+
+            <div class="footer-contact-item">
+              <span>◉</span>
+              <div>
+                <small>WHATSAPP</small>
+                <a href="https://wa.me/91XXXXXXXXXX">Chat with us</a>
+              </div>
+            </div>
+
+            <div class="footer-contact-item">
+              <span>⌖</span>
+              <div>
+                <small>LOCATION</small>
+                <p>
+                  Near Avion Hotel, Domestic Airport, Nehru Rd, Vile Parle East,
+                  Mumbai, Maharashtra 400057
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Service Notice -->
+        <div class="footer-service-strip">
+          <div>
+            <span>✧</span>
+            <p>HOME & HOTEL SPA SERVICE AVAILABLE</p>
+          </div>
+          <div>
+            <span>✧</span>
+            <p>CASH ON DELIVERY AVAILABLE</p>
+          </div>
+        </div>
+
+        <!-- Bottom -->
+        <div class="footer-bottom">
+          <p>© 2026 RUSSIAN THAI SPA. ALL RIGHTS RESERVED.</p>
+
+          <div>
+            <a href="#home">BACK TO TOP ↑</a>
+            <span>CRAFTED WITH ELEGANCE</span>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <!-- FLOATING CALL & WHATSAPP PILL -->
+    <div class="floating-contact">
+      <a
+        href="tel:+91XXXXXXXXXX"
+        class="floating-contact-item floating-call"
+        aria-label="Call Russian Thai Spa"
+      >
+        <span class="floating-contact-icon">
+          <svg viewBox="0 0 24 24" fill="currentColor">
+            <path
+              d="M6.62 10.79a15.05 15.05 0 006.59 6.59l2.2-2.2a1 1 0 011.02-.24
+        c1.12.37 2.33.57 3.57.57a1 1 0 011 1V20a1 1 0 01-1 1
+        C10.61 21 3 13.39 3 4a1 1 0 011-1h3.5a1 1 0 011 1
+        c0 1.24.2 2.45.57 3.57a1 1 0 01-.25 1.02z"
+            />
+          </svg>
+        </span>
+
+        <span>Call</span>
+      </a>
+
+      <span class="floating-contact-divider"></span>
+
+      <a
+        href="https://wa.me/91XXXXXXXXXX"
+        target="_blank"
+        rel="noopener"
+        class="floating-contact-item floating-whatsapp"
+        aria-label="Chat on WhatsApp"
+      >
+        <span class="floating-contact-icon">
+          <svg viewBox="0 0 24 24" fill="currentColor">
+            <path
+              d="M20.52 3.48A11.87 11.87 0 0012.05 0
+        C5.5 0 .16 5.34.16 11.9c0 2.1.55 4.16 1.6 5.97L0
+        24l6.28-1.65a11.9 11.9 0 005.76 1.47h.01c6.56 0
+        11.9-5.34 11.9-11.9a11.83 11.83 0 00-3.43-8.44zM12.05
+        21.8a9.9 9.9 0 01-5.04-1.38l-.36-.21-3.73.98.99-3.64
+        -.24-.37a9.86 9.86 0 01-1.52-5.28c0-5.47 4.45-9.92
+        9.92-9.92a9.86 9.86 0 017.02 2.91 9.86 9.86 0
+        012.9 7.01c0 5.47-4.45 9.9-9.94 9.9zm5.44-7.42
+        c-.3-.15-1.76-.87-2.03-.97-.27-.1-.47-.15-.67.15
+        -.2.3-.77.97-.94 1.17-.17.2-.35.22-.65.07
+        -.3-.15-1.26-.46-2.4-1.47-.89-.79-1.49-1.77-1.67-2.07
+        -.17-.3-.02-.46.13-.61.13-.13.3-.35.45-.52
+        .15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52
+        -.08-.15-.67-1.62-.92-2.22-.24-.58-.49-.5-.67-.51
+        h-.57c-.2 0-.52.07-.8.37-.27.3-1.04 1.02-1.04
+        2.48s1.07 2.88 1.22 3.08c.15.2 2.1 3.2 5.1
+        4.49.71.3 1.27.49 1.7.62.71.23 1.36.2 1.87.12
+        .57-.08 1.76-.72 2.01-1.42.25-.7.25-1.29.17-1.42
+        -.07-.12-.27-.2-.57-.35z"
+            />
+          </svg>
+        </span>
+
+        <span>WhatsApp</span>
+      </a>
+    </div>
+  </body>
+</html>
