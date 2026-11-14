@@ -2470,3 +2470,138 @@ html {
     transform: translate(50%, 0);
   }
 }
+
+/* Contact Page Styles */
+
+body {
+  margin: 0;
+  font-family: 'DM Sans', sans-serif;
+  background: #101b17;
+  color: #f5f0e5;
+}
+
+.contact-page {
+  min-height: 100vh;
+  padding: 70px 6%;
+  background: radial-gradient(ellipse at top, #243c2d, #101b17 65%);
+}
+
+.contact-wrap {
+  max-width: 1100px;
+  margin: auto;
+}
+
+.contact-brand {
+  display: inline-block;
+  color: #d6bd83;
+  text-decoration: none;
+  font-family: 'Playfair Display', serif;
+  font-size: 25px;
+  margin-bottom: 65px;
+}
+
+.contact-heading {
+  text-align: center;
+  margin-bottom: 55px;
+}
+
+.contact-heading small {
+  color: #d6bd83;
+  letter-spacing: 3px;
+}
+
+.contact-heading h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(42px, 6vw, 68px);
+  font-weight: 400;
+  margin: 18px 0;
+}
+
+.contact-heading h1 span {
+  color: #d6bd83;
+  font-style: italic;
+}
+
+.contact-heading p {
+  color: #aab5ac;
+  line-height: 1.8;
+}
+
+.contact-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 22px;
+}
+
+.contact-card {
+  padding: 32px;
+  border: 1px solid rgba(214,189,131,.25);
+  border-radius: 20px;
+  background: rgba(255,255,255,.05);
+  backdrop-filter: blur(20px);
+}
+
+.contact-card .symbol {
+  color: #d6bd83;
+  font-size: 30px;
+}
+
+.contact-card h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: 25px;
+  font-weight: 400;
+  margin: 15px 0 10px;
+}
+
+.contact-card p {
+  color: #aab5ac;
+  font-size: 13px;
+  line-height: 1.8;
+}
+
+.contact-action {
+  display: inline-block;
+  margin-top: 15px;
+  padding: 13px 20px;
+  border-radius: 30px;
+  background: #d6bd83;
+  color: #14231d;
+  text-decoration: none;
+  font-size: 11px;
+  font-weight: 700;
+}
+
+.contact-map {
+  margin-top: 25px;
+  padding: 30px;
+  border: 1px solid rgba(214,189,131,.25);
+  border-radius: 20px;
+  background: rgba(255,255,255,.04);
+}
+
+.contact-map a {
+  color: #d6bd83;
+  text-decoration: none;
+}
+
+.back-home {
+  display: block;
+  text-align: center;
+  margin-top: 45px;
+  color: #d6bd83;
+  text-decoration: none;
+}
+
+@media (max-width: 650px) {
+  .contact-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .contact-page {
+    padding: 35px 6%;
+  }
+
+  .contact-brand {
+    margin-bottom: 45px;
+  }
+}

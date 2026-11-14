@@ -1,0 +1,591 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Experience luxury wellness at Russian Thai Spa in Bengaluru. Explore Thai, Swedish, Deep Tissue, Hot Oil & Body Massage, Jacuzzi, plus home and hotel spa services with Cash on Delivery.">
+    <meta name="keywords" content="Russian Thai Spa Bengaluru, spa in Bangalore, Thai massage Bangalore, body massage Bangalore, Jacuzzi Bangalore, home spa service Bangalore, hotel spa service Bangalore">
+    <meta name="robots" content="index, follow">
+    <meta name="author" content="Russian Thai Spa">
+    <link rel="stylesheet" href="./src/output.css">
+    <link rel="canonical" href="https://www.russainspa.fun/contact.html">
+    <!-- Google Fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+<!-- Alpine.js -->
+<script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+<title>Russian Thai Spa Bengaluru | Luxury Spa & Massage Services</title>
+</head>
+<body>
+    <!-- RUSSIAN THAI SPA - FLOATING NAVBAR -->
+    <header
+      x-data="{
+        mobileOpen: false,
+        locationOpen: false,
+        scrolled: false
+    }"
+      @scroll.window="scrolled = window.scrollY > 20"
+      @keydown.escape.window="mobileOpen = false; locationOpen = false"
+      class="floating-header"
+    >
+      <nav class="floating-nav" :class="scrolled ? 'nav-scrolled' : ''">
+        <!-- NAVBAR INNER -->
+        <div class="nav-inner">
+          <!-- BRAND -->
+          <a href="#home" class="brand">
+            <div class="brand-icon">
+              <svg viewBox="0 0 40 40" fill="none">
+                <path
+                  d="M20 4C20 4 9 16 9 23C9 29.1 13.9 34 20 34C26.1 34 31 29.1 31 23C31 16 20 4 20 4Z"
+                  stroke="currentColor"
+                  stroke-width="1.3"
+                />
+                <path
+                  d="M20 14C17 19 16 23 20 29C24 23 23 19 20 14Z"
+                  fill="currentColor"
+                />
+              </svg>
+            </div>
+
+            <div class="brand-copy">
+              <span class="brand-name">Russian Thai</span>
+              <span class="brand-tagline">LUXURY WELLNESS</span>
+            </div>
+          </a>
+
+          <!-- DESKTOP NAVIGATION -->
+          <div class="desktop-nav">
+            <a href="#home" class="nav-item active"> Home </a>
+
+            <a href="#about" class="nav-item"> About </a>
+
+            <a href="#services" class="nav-item"> Treatments </a>
+
+            <a href="#faq" class="nav-item">FAQ</a>
+            <!-- LOCATION DROPDOWN -->
+            <div class="location-wrapper" @click.outside="locationOpen = false">
+              <button
+                @click="locationOpen = !locationOpen"
+                class="nav-item location-trigger"
+                :aria-expanded="locationOpen.toString()"
+              >
+                Locations
+
+                <svg
+                  class="location-arrow"
+                  :class="locationOpen ? 'arrow-open' : ''"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="1.8"
+                >
+                  <path d="m6 9 6 6 6-6" />
+                </svg>
+              </button>
+
+              <!-- GLASS LOCATION MENU -->
+              <div
+                x-cloak
+                x-show="locationOpen"
+                x-transition:enter="transition ease-out duration-300"
+                x-transition:enter-start="opacity-0 translate-y-3 scale-95"
+                x-transition:enter-end="opacity-100 translate-y-0 scale-100"
+                x-transition:leave="transition ease-in duration-200"
+                x-transition:leave-start="opacity-100"
+                x-transition:leave-end="opacity-0 translate-y-2"
+                class="location-dropdown"
+              >
+                <div class="dropdown-heading">EXPLORE OUR LOCATION</div>
+
+                <a
+                  href="#contact"
+                  @click="locationOpen = false"
+                  class="location-option"
+                >
+                  <div class="location-icon">
+                    <svg
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="1.6"
+                    >
+                      <path
+                        d="M20 10c0 5-8 12-8 12S4 15 4 10a8 8 0 1 1 16 0Z"
+                      />
+                      <circle cx="12" cy="10" r="2.5" />
+                    </svg>
+                  </div>
+
+                  <div class="location-info">
+                    <span>Mumbai</span>
+                    <small>India · View location</small>
+                  </div>
+
+                  <span class="location-external">↗</span>
+                </a>
+
+                <div class="dropdown-divider"></div>
+
+                <a
+                  href="#contact"
+                  @click="locationOpen = false"
+                  class="dropdown-contact"
+                >
+                  Get in touch <span>→</span>
+                </a>
+              </div>
+            </div>
+
+            <a href="#gallery" class="nav-item"> Gallery </a>
+          </div>
+
+          <!-- DESKTOP BOOKING -->
+          <a href="#home" class="nav-booking">
+            <span>Book Appointment</span>
+
+            <svg
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.8"
+            >
+              <path d="M5 12h14M13 6l6 6-6 6" />
+            </svg>
+          </a>
+
+          <!-- MOBILE MENU BUTTON -->
+          <button
+            @click="mobileOpen = !mobileOpen; locationOpen = false"
+            class="mobile-toggle"
+            :aria-expanded="mobileOpen.toString()"
+            aria-label="Toggle navigation"
+          >
+            <span :class="mobileOpen ? 'line-one-open' : ''"></span>
+            <span :class="mobileOpen ? 'line-two-open' : ''"></span>
+            <span :class="mobileOpen ? 'line-three-open' : ''"></span>
+          </button>
+        </div>
+
+        <!-- MOBILE MENU -->
+        <div
+          x-cloak
+          x-show="mobileOpen"
+          x-transition:enter="transition ease-out duration-300"
+          x-transition:enter-start="opacity-0 -translate-y-3"
+          x-transition:enter-end="opacity-100 translate-y-0"
+          x-transition:leave="transition ease-in duration-200"
+          x-transition:leave-start="opacity-100"
+          x-transition:leave-end="opacity-0 -translate-y-3"
+          class="mobile-nav"
+        >
+          <a href="#home" @click="mobileOpen = false" class="mobile-nav-item">
+            Home
+          </a>
+
+          <a href="#about" @click="mobileOpen = false" class="mobile-nav-item">
+            About
+          </a>
+
+          <a
+            href="#services"
+            @click="mobileOpen = false"
+            class="mobile-nav-item"
+          >
+            Treatments
+          </a>
+          <a href="#faq" @click="mobileOpen = false" class="mobile-nav-item">
+            FAQ
+          </a>
+          <!-- MOBILE LOCATION -->
+          <div class="mobile-location">
+            <button
+              @click="locationOpen = !locationOpen"
+              class="mobile-nav-item mobile-location-trigger"
+            >
+              Locations
+
+              <svg
+                viewBox="0 0 24 24"
+                :class="locationOpen ? 'arrow-open' : ''"
+                class="location-arrow"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.8"
+              >
+                <path d="m6 9 6 6 6-6" />
+              </svg>
+            </button>
+
+            <div
+              x-cloak
+              x-show="locationOpen"
+              x-transition
+              class="mobile-location-content"
+            >
+              <a
+                href="#contact"
+                @click="mobileOpen = false; locationOpen = false"
+              >
+                <span>📍</span>
+                Mumbai, India
+              </a>
+            </div>
+          </div>
+
+          <a
+            href="#gallery"
+            @click="mobileOpen = false"
+            class="mobile-nav-item"
+          >
+            Gallery
+          </a>
+
+          <a
+            href="#contact"
+            @click="mobileOpen = false"
+            class="mobile-nav-item"
+          >
+            Contact
+          </a>
+
+          <a href="#home" @click="mobileOpen = false" class="mobile-booking">
+            Book Your Experience <span>↗</span>
+          </a>
+        </div>
+      </nav>
+    </header>
+    <!-- HERO SECTION -->
+    <main>
+      <section id="home" class="hero-section">
+        <div class="hero-glow hero-glow-one"></div>
+        <div class="hero-glow hero-glow-two"></div>
+
+        <div class="hero-container">
+          <div class="hero-content">
+            <span class="hero-eyebrow">
+              <span class="hero-dot"></span>
+              LUXURY WELLNESS EXPERIENCE
+            </span>
+
+            <h1 class="hero-title">
+              Russian & Thai Spa <br />
+              <span>At Home & Hotels</span>
+            </h1>
+
+            <p class="hero-description">
+              Escape the everyday and experience a world of calm. Discover the
+              harmony of Russian and Thai-inspired wellness.
+            </p>
+
+            <div class="hero-actions">
+              <a href="#home" class="hero-button-primary">
+                Call Now <span>↗</span>
+              </a>
+              <a href="#services" class="hero-button-secondary">
+                Whatsapp Now <span>↗</span>
+              </a>
+            </div>
+
+            <div class="hero-highlights">
+              <div>
+                <span class="highlight-icon">✧</span>
+                <span>Relaxation</span>
+              </div>
+              <div>
+                <span class="highlight-icon">✧</span>
+                <span>Rejuvenation</span>
+              </div>
+              <div>
+                <span class="highlight-icon">✧</span>
+                <span>Wellness</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="hero-visual">
+            <div class="hero-image-frame">
+              <img
+                src="images/spa-therapist.jpg"
+                alt="Luxury spa relaxation room"
+                class="hero-image"
+              />
+              <div class="hero-image-overlay"></div>
+              <div class="hero-image-caption">
+                <span>THE ART OF WELLNESS</span>
+                <strong>Your moment of calm.</strong>
+              </div>
+            </div>
+
+            <div class="hero-float-card hero-card-top">
+              <span class="float-card-icon">✧</span>
+              <div>
+                <strong>Find Your Balance</strong>
+                <small>A moment just for you</small>
+              </div>
+            </div>
+
+            <div class="hero-float-card hero-card-bottom">
+              <span class="float-card-number">01</span>
+              <div>
+                <strong>Escape. Unwind.</strong>
+                <small>Rediscover your calm</small>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="hero-bottom-line">
+          <span>Mumbai, INDIA</span>
+          <span>AN EXPERIENCE BEYOND RELAXATION</span>
+          <span>SCROLL TO EXPLORE ↓</span>
+        </div>
+      </section>
+    </main>
+     <main class="contact-page">
+    <div class="contact-wrap">
+
+      <a href="index.html" class="contact-brand">
+        Russian Thai
+      </a>
+
+      <div class="contact-heading">
+        <small>✧ WE ARE HERE FOR YOU</small>
+        <h1>Get in <span>Touch.</span></h1>
+        <p>
+          Your wellness journey starts with a conversation.
+          Contact us for your preferred spa experience.
+        </p>
+      </div>
+
+      <div class="contact-grid">
+
+        <div class="contact-card">
+          <span class="symbol">☎</span>
+          <h2>Call Us</h2>
+          <p>Speak with our team about treatments and availability.</p>
+          <a href="tel:+918893528857" class="contact-action">
+            CALL NOW ↗
+          </a>
+        </div>
+
+        <div class="contact-card">
+          <span class="symbol">◉</span>
+          <h2>WhatsApp Us</h2>
+          <p>Message us for treatment details and home or hotel services.</p>
+          <a href="https://wa.me/918893528857" class="contact-action">
+            CHAT ON WHATSAPP ↗
+          </a>
+        </div>
+
+        <div class="contact-card">
+          <span class="symbol">✧</span>
+          <h2>Home Spa Service</h2>
+          <p>Enjoy your selected spa experience at your home. Contact us to check availability.</p>
+          <a href="https://wa.me/918893528857" class="contact-action">
+            ENQUIRE NOW ↗
+          </a>
+        </div>
+
+        <div class="contact-card">
+          <span class="symbol">◇</span>
+          <h2>Hotel Spa Service</h2>
+          <p>Ask our team about arranging a spa experience at your hotel.</p>
+          <a href="https://wa.me/918893528857" class="contact-action">
+            ENQUIRE NOW ↗
+          </a>
+        </div>
+
+      </div>
+
+      <div class="contact-map">
+        <h2>Find Our Location</h2>
+        <p>Bengaluru, India</p>
+        <a href="https://maps.app.goo.gl/rrU3A4NRpCtZUk5z8"
+           target="_blank" rel="noopener">
+          OPEN GOOGLE MAPS ↗
+        </a>
+      </div>
+
+      <a href="index.html" class="back-home">
+        ← BACK TO HOMEPAGE
+      </a>
+
+    </div>
+  </main>4 <main class="contact-page">
+    <div class="contact-wrap">
+
+      <a href="index.html" class="contact-brand">
+        Russian Thai
+      </a>
+
+      <header class="contact-heading">
+        <small>WE ARE HERE FOR YOU</small>
+
+        <h1>
+          Let's Begin Your <span>Wellness</span> Journey
+        </h1>
+
+        <p>
+          Connect with us to experience premium spa and wellness services.
+          Our team is ready to assist you.
+        </p>
+      </header>
+
+      <section class="contact-grid">
+
+        <!-- Phone -->
+        <article class="contact-card">
+          <div class="symbol">✆</div>
+          <h2>Call Us</h2>
+          <p>
+            Speak directly with our team for service details and enquiries.
+          </p>
+          <a href="tel:+918893528857" class="contact-action">
+            CALL NOW →
+          </a>
+        </article>
+
+        <!-- WhatsApp -->
+        <article class="contact-card">
+          <div class="symbol">✉</div>
+          <h2>WhatsApp Us</h2>
+          <p>
+            Message us to enquire about massage services and availability.
+          </p>
+          <a href="https://wa.me/918893528857" class="contact-action">
+            CHAT ON WHATSAPP →
+          </a>
+        </article>
+
+        <!-- Home Spa -->
+        <article class="contact-card">
+          <div class="symbol">⌂</div>
+          <h2>Home Spa Service</h2>
+          <p>
+            Enjoy a relaxing spa experience in the comfort of your own home.
+            Cash on Delivery is available.
+          </p>
+          <a href="https://wa.me/918893528857" class="contact-action">
+            ENQUIRE NOW →
+          </a>
+        </article>
+
+        <!-- Hotel Spa -->
+        <article class="contact-card">
+          <div class="symbol">⌑</div>
+          <h2>Hotel Spa Service</h2>
+          <p>
+            Enjoy premium wellness services at your hotel.
+            Cash on Delivery is available.
+          </p>
+          <a href="https://wa.me/918893528857" class="contact-action">
+            ENQUIRE NOW →
+          </a>
+        </article>
+
+      </section>
+
+      <!-- Location -->
+      <section class="contact-map">
+        <h2>Find Our Location</h2>
+        <p>
+          Visit Russian Thai Spa and discover a relaxing wellness experience.
+        </p>
+
+        <a
+          href="https://maps.app.goo.gl/rrU3A4NRpCtZUk5z8"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          OPEN LOCATION IN GOOGLE MAPS →
+        </a>
+      </section>
+
+      <a href="index.html" class="back-home">
+        ← Back to Home
+      </a>
+
+    </div>
+  </main>
+    
+<footer class="mt-20 border-t border-[#d6bd83]/20 pt-12">
+
+  <div class="grid gap-10 md:grid-cols-3">
+
+    <!-- Brand -->
+    <div>
+      <a href="index.html"
+         class="font-serif text-3xl text-[#d6bd83]">
+        Russian Thai
+      </a>
+
+      <p class="mt-4 max-w-xs text-sm leading-7 text-[#aab5ac]">
+        Experience luxury wellness, relaxation and premium spa services
+        in a peaceful atmosphere.
+      </p>
+
+      <p class="mt-4 text-xs tracking-[3px] text-[#d6bd83]">
+        LUXURY WELLNESS
+      </p>
+    </div>
+
+    <!-- Quick Links -->
+    <div>
+      <h3 class="mb-5 font-serif text-xl text-[#f5f0e5]">
+        Quick Links
+      </h3>
+
+      <div class="space-y-3 text-sm text-[#aab5ac]">
+        <a href="index.html#home" class="block transition hover:text-[#d6bd83]">Home</a>
+        <a href="index.html#about" class="block transition hover:text-[#d6bd83]">About Us</a>
+        <a href="index.html#services" class="block transition hover:text-[#d6bd83]">Treatments</a>
+        <a href="contact.html" class="block transition hover:text-[#d6bd83]">Contact</a>
+      </div>
+    </div>
+
+    <!-- Contact -->
+    <div>
+      <h3 class="mb-5 font-serif text-xl text-[#f5f0e5]">
+        Get In Touch
+      </h3>
+
+      <div class="space-y-4 text-sm text-[#aab5ac]">
+        <a href="tel:+91XXXXXXXXXX" class="block transition hover:text-[#d6bd83]">
+          Call Our Team
+        </a>
+
+        <a href="https://wa.me/91XXXXXXXXXX"
+           class="block transition hover:text-[#d6bd83]">
+          WhatsApp Enquiry
+        </a>
+
+        <a href="https://maps.app.goo.gl/rrU3A4NRpCtZUk5z8"
+           target="_blank"
+           rel="noopener noreferrer"
+           class="block transition hover:text-[#d6bd83]">
+          Find Us on Google Maps ↗
+        </a>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Bottom Bar -->
+  <div class="mt-12 flex flex-col justify-between gap-4 border-t border-[#d6bd83]/15 py-6 text-center text-xs text-[#aab5ac] md:flex-row md:text-left">
+
+    <p>
+      © 2026 Russian Thai. All rights reserved.
+    </p>
+
+    <a href="/public/index.html"
+       class="text-[#d6bd83] transition hover:text-white">
+      Back to Home ↑
+    </a>
+
+  </div>
+
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,25 @@
+
+# Russian Thai Spa - Robots.txt
+
+# Allow all search engines
+User-agent: *
+Allow: /
+
+# Block private or non-public areas
+Disallow: /admin/
+Disallow: /private/
+Disallow: /login/
+Disallow: /dashboard/
+Disallow: /tmp/
+
+# Allow important website pages
+Allow: /
+Allow: /index.html
+Allow: /contact.html
+
+# Block internal search and query URLs
+Disallow: /*?search=
+Disallow: /*?filter=
+
+# Sitemap location
+Sitemap: https://russainspa.fun/sitemap.xml
